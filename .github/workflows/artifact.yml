@@ -91,8 +91,8 @@ jobs:
           cp -r ./compiled/*.d.ts ./dist/API
           cp -r "./Mod Manager/dist/linux-unpacked/." "./dist/Mod Manager"
           cp Deploy dist
-          echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > ./"Mod Manager.sh"
-          chmod +x ./Mod\ Manager.sh
+          echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "./Mod Manager.sh"
+          chmod +x "./Mod Manager.sh"
 
       - name: Zip
         uses: TheDoctor0/zip-release@4fb9e4ff72847dd3d1c111cf63834e353ed7cb3d
