@@ -49,7 +49,7 @@ jobs:
           latest: true
           path: './Third-Party'
 
-      - name: Download ResourceTool
+      - name: Download ResourceTool Linux
         uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
         with:
           repo: OrfeasZ/ZHMTools
@@ -57,7 +57,7 @@ jobs:
           latest: true
           path: './Third-Party'
 
-      - name: Download ResourceTool (rpkg-cli.exe requires this to work)
+      - name: Download ResourceTool Windows (rpkg-cli.exe requires this to work)
         uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
         with:
           repo: OrfeasZ/ZHMTools
@@ -88,7 +88,7 @@ jobs:
           cp -r ./Third-Party ./dist/Third-Party
           cp -r "./For Build" ./dist
           cp -r ./docs ./dist/Info
-          cp -r ./compiled ./dist/API *.d.ts
+          cp -r ./compiled/*.d.ts ./dist/API
           cp -r "./Mod Manager/dist/linux-unpacked" "./dist/Mod Manager"
           cp Deploy.exe dist
           echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "Mod Manager.sh"
