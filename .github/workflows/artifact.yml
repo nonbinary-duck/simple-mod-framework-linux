@@ -91,6 +91,7 @@ jobs:
           cp -r ./compiled/*.d.ts ./dist/API
           cp -r "./Mod Manager/dist/linux-unpacked/." "./dist/Mod Manager"
           cp Deploy dist
+          chmod +x "dist/Third-Party/ResourceTool"
 
       - name: Zip
         uses: TheDoctor0/zip-release@4fb9e4ff72847dd3d1c111cf63834e353ed7cb3d
