@@ -1214,7 +1214,7 @@ export default async function deploy(
 						}
 
 						execCommand(
-							`"Third-Party\\xdelta3" -d -s "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, runtimeID + "." + fileType)}" "${contentFilePath}" "${path.join(
+							`xdelta3 -d -s "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, runtimeID + "." + fileType)}" "${contentFilePath}" "${path.join(
 								process.cwd(),
 								"temp",
 								content.chunk,
