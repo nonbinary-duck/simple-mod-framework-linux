@@ -89,7 +89,7 @@ jobs:
           cp -r "./For Build" ./dist
           cp -r ./docs ./dist/Info
           cp -r ./compiled/*.d.ts ./dist/API
-          cp -r "./Mod Manager/dist/linux-unpacked/*" "./dist/Mod Manager"
+          cp -r "./Mod Manager/dist/linux-unpacked/." "./dist/Mod Manager"
           cp Deploy.exe dist
           echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "Mod Manager.sh"
           chmod +x ./Mod\ Manager.sh
