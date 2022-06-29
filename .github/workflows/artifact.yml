@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -35,12 +35,11 @@ jobs:
         run: |
           npm install -g pkg typescript
 
-      - name: Build EXE
+      - name: Build binary
         run: |
-          New-Item -ItemType Directory -Force -Path ./node_modules/piscina
-          robocopy ./piscina ./node_modules/piscina /COPYALL /E /is /it; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r piscina/ node_modules/piscina
           tsc
-          pkg package.json --targets node14-win-x64 --output Deploy.exe --compress Brotli
+          pkg package.json --targets node14-linux-x64 --output Deploy.exe --compress Brotli
 
       - name: Download RPKG
         uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
@@ -51,6 +50,14 @@ jobs:
           path: './Third-Party'
 
       - name: Download ResourceTool
+        uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
+        with:
+          repo: OrfeasZ/ZHMTools
+          name: ResourceTool-linux-x64
+          latest: true
+          path: './Third-Party'
+
+      - name: Download ResourceTool (rpkg-cli.exe requires this to work)
         uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
         with:
           repo: OrfeasZ/ZHMTools
@@ -73,18 +80,19 @@ jobs:
 
       - name: Ready for zip
         run: |
-          New-Item -ItemType Directory dist
-          New-Item -ItemType Directory dist/Third-Party
-          New-Item -ItemType Directory dist/Info
-          New-Item -ItemType Directory dist/API
-          New-Item -ItemType Directory "dist/Mod Manager"
-          robocopy ./Third-Party ./dist/Third-Party /COPYALL /E; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          robocopy "./For Build" ./dist /COPYALL /E; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          robocopy ./docs ./dist/Info /COPYALL /E; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          robocopy ./compiled ./dist/API /COPYALL /E *.d.ts; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          robocopy ".\Mod Manager\dist\win-unpacked" "./dist/Mod Manager" /COPYALL /E; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          copy Deploy.exe dist
-          New-Item -Path dist -Name "Mod Manager.cmd" -ItemType "file" -Value "@echo off`ncd `"Mod Manager`"`nstart `"`" `"Mod Manager.exe`""
+          mkdir dist
+          mkdir dist/Third-Party
+          mkdir dist/Info
+          mkdir dist/API
+          mkdir "dist/Mod Manager"
+          cp -r ./Third-Party ./dist/Third-Party; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r "./For Build" ./dist; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r ./docs ./dist/Info; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r ./compiled ./dist/API *.d.ts; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r "./Mod Manager/dist/linux-unpacked" "./dist/Mod Manager"; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp Deploy.exe dist
+          echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "Mod Manager.sh"
+          chmod +x ./Mod\ Manager.sh
 
       - name: Zip
         uses: TheDoctor0/zip-release@4fb9e4ff72847dd3d1c111cf63834e353ed7cb3d
