@@ -85,11 +85,11 @@ jobs:
           mkdir dist/Info
           mkdir dist/API
           mkdir "dist/Mod Manager"
-          cp -r ./Third-Party ./dist/Third-Party; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          cp -r "./For Build" ./dist; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          cp -r ./docs ./dist/Info; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          cp -r ./compiled ./dist/API *.d.ts; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
-          cp -r "./Mod Manager/dist/linux-unpacked" "./dist/Mod Manager"; if ($lastexitcode -lt 8) { $global:LASTEXITCODE = $null }
+          cp -r ./Third-Party ./dist/Third-Party
+          cp -r "./For Build" ./dist
+          cp -r ./docs ./dist/Info
+          cp -r ./compiled ./dist/API *.d.ts
+          cp -r "./Mod Manager/dist/linux-unpacked" "./dist/Mod Manager"
           cp Deploy.exe dist
           echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "Mod Manager.sh"
           chmod +x ./Mod\ Manager.sh
