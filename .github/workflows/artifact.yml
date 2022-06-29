@@ -33,12 +33,12 @@ jobs:
 
       - name: Prep
         run: |
-          npm install -g pkg typescript
+          npm install -g pkg typescript tsc-silent
 
       - name: Build binary
         run: |
           cp -r piscina/ node_modules/piscina
-          tsc
+          tsc-silent -p tsconfig.json --suppress @src/discover.ts @src/deploy.ts
           pkg package.json --targets node14-linux-x64 --output Deploy.exe --compress Brotli
 
       - name: Download RPKG
