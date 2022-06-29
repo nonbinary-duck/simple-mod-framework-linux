@@ -1,9 +1,9 @@
 {
-    "runtimePath": "..\\Runtime",
-    "retailPath": "..\\Retail",
+    "runtimePath": "../Runtime",
+    "retailPath": "../Retail",
     "skipIntro": true,
     "outputToSeparateDirectory": false,
     "loadOrder": [],
     "modOptions": {},
-    "outputConfigToAppDataOnDeploy": true
+    "outputConfigToAppDataOnDeploy": false
 }
