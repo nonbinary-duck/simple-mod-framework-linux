@@ -84,7 +84,7 @@ const logger = args["--useConsoleLogging"]
 				process.stdout.write(chalk`{grey DETAIL\t${text}}\n`)
 
 				if (args["--pauseAfterLogging"]) {
-					child_process.execSync("pause", {
+					child_process.execSync("read -n1 -r -p 'Press any key to continue...'", {
 						// @ts-expect-error This code works and I'm not going to question it
 						shell: true,
 						stdio: [0, 1, 2]
@@ -98,7 +98,7 @@ const logger = args["--useConsoleLogging"]
 				process.stdout.write(chalk`{grey DEBUG\t${text}}\n`)
 
 				if (args["--pauseAfterLogging"]) {
-					child_process.execSync("pause", {
+					child_process.execSync("read -n1 -r -p 'Press any key to continue...'", {
 						// @ts-expect-error This code works and I'm not going to question it
 						shell: true,
 						stdio: [0, 1, 2]
@@ -112,7 +112,7 @@ const logger = args["--useConsoleLogging"]
 				process.stdout.write(chalk`{blue INFO}\t${text}\n`)
 
 				if (args["--pauseAfterLogging"]) {
-					child_process.execSync("pause", {
+					child_process.execSync("read -n1 -r -p 'Press any key to continue...'", {
 						// @ts-expect-error This code works and I'm not going to question it
 						shell: true,
 						stdio: [0, 1, 2]
@@ -126,7 +126,7 @@ const logger = args["--useConsoleLogging"]
 				process.stdout.write(chalk`{yellow WARN}\t${text}\n`)
 
 				if (args["--pauseAfterLogging"]) {
-					child_process.execSync("pause", {
+					child_process.execSync("read -n1 -r -p 'Press any key to continue...'", {
 						// @ts-expect-error This code works and I'm not going to question it
 						shell: true,
 						stdio: [0, 1, 2]
@@ -140,7 +140,7 @@ const logger = args["--useConsoleLogging"]
 				process.stderr.write(chalk`{red ERROR}\t${text}\n`)
 				console.trace()
 
-				child_process.execSync("pause", {
+				child_process.execSync("read -n1 -r -p 'Press any key to continue...'", {
 					// @ts-expect-error This code works and I'm not going to question it
 					shell: true,
 					stdio: [0, 1, 2]

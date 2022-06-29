@@ -83,7 +83,7 @@ export = async ({
 		/* ------------------------------------ Convert to RT Source ------------------------------------ */
 		execCommand(
 			"\"" +
-				path.join(process.cwd(), "Third-Party", "ResourceTool.exe") +
+				path.join(process.cwd(), "Third-Party", "ResourceTool") +
 				"\" HM3 convert TEMP \"" +
 				path.join(process.cwd(), assignedTemporaryDirectory, tempRPKG, "TEMP", tempHash + ".TEMP") +
 				"\" \"" +
@@ -92,7 +92,7 @@ export = async ({
 		)
 		execCommand(
 			"\"" +
-				path.join(process.cwd(), "Third-Party", "ResourceTool.exe") +
+				path.join(process.cwd(), "Third-Party", "ResourceTool") +
 				"\" HM3 convert TBLU \"" +
 				path.join(process.cwd(), assignedTemporaryDirectory, tbluRPKG, "TBLU", tbluHash + ".TBLU") +
 				"\" \"" +
@@ -160,7 +160,7 @@ export = async ({
 		/* -------------------------------------- Convert to binary ------------------------------------- */
 		execCommand(
 			"\"" +
-				path.join(process.cwd(), "Third-Party", "ResourceTool.exe") +
+				path.join(process.cwd(), "Third-Party", "ResourceTool") +
 				"\" HM3 generate TEMP \"" +
 				path.join(process.cwd(), assignedTemporaryDirectory, "temp.TEMP.json") +
 				"\" \"" +
@@ -169,7 +169,7 @@ export = async ({
 		)
 		execCommand(
 			"\"" +
-				path.join(process.cwd(), "Third-Party", "ResourceTool.exe") +
+				path.join(process.cwd(), "Third-Party", "ResourceTool") +
 				"\" HM3 generate TBLU \"" +
 				path.join(process.cwd(), assignedTemporaryDirectory, "temp.TBLU.json") +
 				"\" \"" +

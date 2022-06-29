@@ -17,7 +17,7 @@ class RPKGInstance {
 	ready: boolean
 
 	constructor() {
-		this.rpkgProcess = child_process.spawn(path.join(process.cwd(), "Third-Party", "rpkg-cli"), ["-i"])
+		this.rpkgProcess = child_process.spawn("wine", [path.join(process.cwd(), "Third-Party", "rpkg-cli.exe"), "-i"])
 		this.output = ""
 		this.previousOutput = ""
 		this.initialised = false

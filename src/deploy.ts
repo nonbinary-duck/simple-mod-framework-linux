@@ -565,7 +565,7 @@ export default async function deploy(
 					)
 				}
 
-				execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES")}"`)
+				execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES")}"`)
 				contractsORESContent = JSON.parse(String(fs.readFileSync(path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES.JSON"))))
 
 				await callRPKGFunction(`-hash_meta_to_json "${path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES.meta")}"`)
@@ -687,14 +687,14 @@ export default async function deploy(
 
 						// Generate the RT source from the QN json
 						execCommand(
-							"\"Third-Party\\ResourceTool.exe\" HM3 generate TEMP \"" +
+							"\"Third-Party/ResourceTool\" HM3 generate TEMP \"" +
 								path.join(process.cwd(), "temp", "temp.TEMP.json") +
 								"\" \"" +
 								path.join(process.cwd(), "temp", entityContent.tempHash + ".TEMP") +
 								"\" --simple"
 						)
 						execCommand(
-							"\"Third-Party\\ResourceTool.exe\" HM3 generate TBLU \"" +
+							"\"Third-Party/ResourceTool\" HM3 generate TBLU \"" +
 								path.join(process.cwd(), "temp", "temp.TBLU.json") +
 								"\" \"" +
 								path.join(process.cwd(), "temp", entityContent.tbluHash + ".TBLU") +
@@ -768,7 +768,7 @@ export default async function deploy(
 					) {
 						await extractOrCopyToTemp(oresChunk, "0057C2C3941115CA", "ORES") // Extract the ORES to temp
 
-						execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES")}"`)
+						execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES")}"`)
 						const oresContent = JSON.parse(String(fs.readFileSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES.JSON"))))
 
 						logger.verbose("Deep merge")
@@ -778,7 +778,7 @@ export default async function deploy(
 
 						fs.writeFileSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES.JSON"), JSON.stringify(oresToWrite))
 						fs.rmSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES"))
-						execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES.json")}"`)
+						execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "0057C2C3941115CA.ORES.json")}"`)
 
 						await copyToCache(instruction.cacheFolder, path.join(process.cwd(), "temp", oresChunk), path.join(content.chunk, await xxhash3(contentIdentifier)))
 					}
@@ -898,7 +898,7 @@ export default async function deploy(
 						await extractOrCopyToTemp(rpkgOfFile, entityContent.file, fileType, content.chunk) // Extract the JSON to temp
 
 						if (entityContent.type == "ORES") {
-							execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType)}"`)
+							execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType)}"`)
 							fs.rmSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType))
 							fs.renameSync(
 								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json"),
@@ -926,7 +926,7 @@ export default async function deploy(
 								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json")
 							)
 							fs.writeFileSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json"), JSON.stringify(fileContent))
-							execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json")}"`)
+							execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json")}"`)
 						} else {
 							fs.writeFileSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType), JSON.stringify(fileContent))
 						}
@@ -967,7 +967,7 @@ export default async function deploy(
 							}
 
 							execCommand(
-								`"Third-Party\\HMTextureTools" rebuild H3 "${contentFilePath}" --metapath "${contentFilePath + ".meta"}" "${path.join(
+								`"wine" "Third-Party\\HMTextureTools.exe" rebuild H3 "${contentFilePath}" --metapath "${contentFilePath + ".meta"}" "${path.join(
 									process.cwd(),
 									"temp",
 									content.chunk,
@@ -1060,7 +1060,7 @@ export default async function deploy(
 							}
 
 							execCommand(
-								`"Third-Party\\HMTextureTools" rebuild H3 "${contentFilePath}" --metapath "${contentFilePath + ".meta"}" "${path.join(
+								`"wine" "Third-Party\\HMTextureTools.exe" rebuild H3 "${contentFilePath}" --metapath "${contentFilePath + ".meta"}" "${path.join(
 									process.cwd(),
 									"temp",
 									content.chunk,
@@ -1260,7 +1260,7 @@ export default async function deploy(
 
 				fs.writeFileSync(path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES.JSON"), JSON.stringify(contractsORESContent))
 				fs.rmSync(path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES"))
-				execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES.json")}"`) // Rebuild the ORES
+				execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp2", contractsORESChunk, "ORES", "002B07020D21D727.ORES.json")}"`) // Rebuild the ORES
 
 				await copyToCache(instruction.cacheFolder, path.join(process.cwd(), "temp2"), "contractsORES")
 			}
@@ -1353,7 +1353,7 @@ export default async function deploy(
 
 			await extractOrCopyToTemp(oresChunk, "00858D45F5F9E3CA", "ORES") // Extract the ORES to temp
 
-			execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES")}"`)
+			execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES")}"`)
 			const oresContent = JSON.parse(String(fs.readFileSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES.JSON"))))
 
 			await callRPKGFunction(`-hash_meta_to_json "${path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES.meta")}"`)
@@ -1431,7 +1431,7 @@ export default async function deploy(
 			// Rebuild the ORES
 			fs.writeFileSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES.JSON"), JSON.stringify(oresContent))
 			fs.rmSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES"))
-			execCommand(`"Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES.json")}"`)
+			execCommand(`"wine" "Third-Party\\OREStool.exe" "${path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES.json")}"`)
 
 			// Copy the ORES to the staging directory
 			fs.copyFileSync(path.join(process.cwd(), "temp", oresChunk, "ORES", "00858D45F5F9E3CA.ORES"), path.join(process.cwd(), "staging", "chunk0", "00858D45F5F9E3CA.ORES"))
@@ -1986,7 +1986,7 @@ export default async function deploy(
 			fs.copyFileSync(path.join(config.retailPath, "thumbs.dat"), path.join(process.cwd(), "cleanThumbs.dat"))
 		}
 
-		execCommand(`"Third-Party\\h6xtea.exe" -d --src "${path.join(process.cwd(), "cleanThumbs.dat")}" --dst "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted")}"`) // Decrypt thumbs
+		execCommand(`"wine" "Third-Party\\h6xtea.exe" -d --src "${path.join(process.cwd(), "cleanThumbs.dat")}" --dst "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted")}"`) // Decrypt thumbs
 
 		let thumbsContent = String(fs.readFileSync(path.join(process.cwd(), "temp", "thumbs.dat.decrypted")))
 		if (config.skipIntro) {
@@ -2000,7 +2000,7 @@ export default async function deploy(
 		}
 
 		fs.writeFileSync(path.join(process.cwd(), "temp", "thumbs.dat.decrypted"), thumbsContent)
-		execCommand(`"Third-Party\\h6xtea.exe" -e --src "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted")}" --dst "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted.encrypted")}"`) // Encrypt thumbs
+		execCommand(`"wine" "Third-Party\\h6xtea.exe" -e --src "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted")}" --dst "${path.join(process.cwd(), "temp", "thumbs.dat.decrypted.encrypted")}"`) // Encrypt thumbs
 		fs.copyFileSync(
 			path.join(process.cwd(), "temp", "thumbs.dat.decrypted.encrypted"),
 			config.outputToSeparateDirectory ? path.join(process.cwd(), "Output", "thumbs.dat") : path.join(config.retailPath, "thumbs.dat")
@@ -2027,13 +2027,13 @@ export default async function deploy(
 		fs.copyFileSync(path.join(config.runtimePath, "packagedefinition.txt"), path.join(process.cwd(), "cleanPackageDefinition.txt"))
 	}
 
-	execCommand(`"Third-Party\\h6xtea.exe" -d --src "${path.join(config.runtimePath, "packagedefinition.txt")}" --dst "${path.join(process.cwd(), "temp", "packagedefinitionVersionCheck.txt")}"`)
+	execCommand(`"wine" "Third-Party\\h6xtea.exe" -d --src "${path.join(config.runtimePath, "packagedefinition.txt")}" --dst "${path.join(process.cwd(), "temp", "packagedefinitionVersionCheck.txt")}"`)
 	if (!String(fs.readFileSync(path.join(process.cwd(), "temp", "packagedefinitionVersionCheck.txt"))).includes("patchlevel=10001")) {
 		// Check if Runtime PD is unmodded and if so overwrite current "clean" version
 		fs.copyFileSync(path.join(config.runtimePath, "packagedefinition.txt"), path.join(process.cwd(), "cleanPackageDefinition.txt"))
 	}
 
-	execCommand(`"Third-Party\\h6xtea.exe" -d --src "${path.join(process.cwd(), "cleanPackageDefinition.txt")}" --dst "${path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted")}"`) // Decrypt PD
+	execCommand(`"wine" "Third-Party\\h6xtea.exe" -d --src "${path.join(process.cwd(), "cleanPackageDefinition.txt")}" --dst "${path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted")}"`) // Decrypt PD
 	let packagedefinitionContent = String(fs.readFileSync(path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted")))
 		.split(/\r?\n/)
 		.join("\r\n")
@@ -2059,7 +2059,7 @@ export default async function deploy(
 
 	fs.writeFileSync(path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted"), packagedefinitionContent + "\r\n\r\n\r\n\r\n") // Add blank lines to ensure correct encryption (XTEA uses blocks of 8 bytes)
 	execCommand(
-		`"Third-Party\\h6xtea.exe" -e --src "${path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted")}" --dst "${path.join(
+		`"wine" "Third-Party\\h6xtea.exe" -e --src "${path.join(process.cwd(), "temp", "packagedefinition.txt.decrypted")}" --dst "${path.join(
 			process.cwd(),
 			"temp",
 			"packagedefinition.txt.decrypted.encrypted"
