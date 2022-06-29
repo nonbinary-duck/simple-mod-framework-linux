@@ -39,7 +39,7 @@ jobs:
         run: |
           cp -r piscina/ node_modules/piscina
           tsc-silent -p tsconfig.json --suppress @src/discover.ts @src/deploy.ts
-          pkg package.json --targets node14-linux-x64 --output Deploy.exe --compress Brotli
+          pkg package.json --targets node14-linux-x64 --output Deploy --compress Brotli
 
       - name: Download RPKG
         uses: aochmann/actions-download-artifact@5709392f11b5937bd316e52687ad87f7deced5f5
@@ -85,13 +85,13 @@ jobs:
           mkdir dist/Info
           mkdir dist/API
           mkdir "dist/Mod Manager"
-          cp -r ./Third-Party ./dist/Third-Party
-          cp -r "./For Build" ./dist
-          cp -r ./docs ./dist/Info
+          cp -r ./Third-Party/. ./dist/Third-Party
+          cp -r "./For Build/." ./dist
+          cp -r ./docs/. ./dist/Info
           cp -r ./compiled/*.d.ts ./dist/API
           cp -r "./Mod Manager/dist/linux-unpacked/." "./dist/Mod Manager"
-          cp Deploy.exe dist
-          echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > "Mod Manager.sh"
+          cp Deploy dist
+          echo -e '#!/bin/sh\ncd "Mod Manager"\n./modmanager' > ./"Mod Manager.sh"
           chmod +x ./Mod\ Manager.sh
 
       - name: Zip
