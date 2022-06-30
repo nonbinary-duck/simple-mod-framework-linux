@@ -38,7 +38,7 @@ jobs:
       - name: Build binary
         run: |
           cp -r piscina/ node_modules/piscina
-          tsc-silent -p tsconfig.json --suppress @src/discover.ts @src/deploy.ts
+          tsc-silent -p tsconfig.json --suppress @src/discover.ts @src/deploy.ts @src/main.ts
           pkg package.json --targets node14-linux-x64 --output Deploy --compress Brotli
 
       - name: Download RPKG
