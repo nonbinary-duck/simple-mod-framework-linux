@@ -39,9 +39,9 @@
     "@types/luxon": "^2.3.2",
     "@types/md5": "^2.3.2",
     "@types/semver": "^7.3.10",
-    "@typescript-eslint/eslint-plugin": "^5.30.3",
-    "@typescript-eslint/parser": "^5.30.3",
-    "eslint": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
     "prettier": "^2.7.1",
     "prettier-eslint": "^15.0.1"
   },
@@ -56,5 +56,5 @@
     ]
   },
   "author": "Atampy26",
-  "license": "MIT"
+  "license": "LGPL-3.0-only"
 }
