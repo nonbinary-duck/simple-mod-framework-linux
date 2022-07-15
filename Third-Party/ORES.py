@@ -73,7 +73,7 @@ def writeBLOBS(self):
         endOfStrings = startOfStrings + offsetOfString(values, len(values)) # Calculates where the end of strings are
         endOfStrings -= (4 - (len(values[-1]) + 1) % 4) % 4
         
-        with open(self.file.upper().replace(".JSON", ""), "wb") as file:
+        with open(self.file.replace(".JSON", ""), "wb") as file:
             # Writes the start of the file
             stream = BinaryStream(file) # Starts a binary stream
             stream.writeBytes(b"\x42\x49\x4E\x31\x00\x08\x01\x00") # Writes BIN1 header
