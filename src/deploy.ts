@@ -902,7 +902,7 @@ export default async function deploy(
 							execCommand(`"python" "Third-Party/OREStool.py" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType)}"`)
 							fs.rmSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType))
 							fs.renameSync(
-								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json"),
+								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".JSON"),
 								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType)
 							)
 						}
@@ -924,10 +924,10 @@ export default async function deploy(
 						if (entityContent.type == "ORES") {
 							fs.renameSync(
 								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType),
-								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json")
+								path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".JSON")
 							)
-							fs.writeFileSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json"), JSON.stringify(fileContent))
-							execCommand(`"python" "Third-Party/OREStool.py" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".json")}"`)
+							fs.writeFileSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".JSON"), JSON.stringify(fileContent))
+							execCommand(`"python" "Third-Party/OREStool.py" "${path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType + ".JSON")}"`)
 						} else {
 							fs.writeFileSync(path.join(process.cwd(), "temp", rpkgOfFile, fileType, entityContent.file + "." + fileType), JSON.stringify(fileContent))
 						}
