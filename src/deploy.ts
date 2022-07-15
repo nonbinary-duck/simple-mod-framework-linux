@@ -1496,7 +1496,7 @@ export default async function deploy(
 						.map((a) => a.path)
 						.map((a) => {
 							return {
-								rpkg: /00[0-9A-F]*\..*?\\(chunk[0-9]*(?:patch[0-9]*)?)\\/gi.exec(a)![1],
+								rpkg: /00[0-9A-F]*\..*?\/(chunk[0-9]*(?:patch[0-9]*)?)\//gi.exec(a)![1],
 								path: a
 							}
 						})
