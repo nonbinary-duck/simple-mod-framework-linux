@@ -1815,7 +1815,7 @@ export default async function deploy(
 		if (invalidatedData.some((a) => a.data.affected.includes("00F5817876E691F1")) || !(await copyFromCache("global", path.join("LOCR", "manifest"), path.join(process.cwd(), "temp")))) {
 			// we need to re-deploy the localisation files OR the localisation files couldn't be copied from cache
 
-			await callRPKGFunction(`-extract_locr_to_json_from "${path.join(config.runtimePath, localisationFileRPKG + ".rpkg")}" -filter "00F5817876E691F1" -output_path temp`)
+			await callRPKGFunction(`-extract_locr_to_json_from "${path.join(config.runtimePath)}" -filter "00F5817876E691F1" -output_path temp`)
 
 			fs.ensureDirSync(path.join(process.cwd(), "staging", "chunk0"))
 
@@ -1906,7 +1906,7 @@ export default async function deploy(
 			if (invalidatedData.some((a) => a.data.affected.includes(locrHash)) || !(await copyFromCache("global", path.join("LOCR", locrHash), path.join(process.cwd(), "temp")))) {
 				// we need to re-deploy the localisation files OR the localisation files couldn't be copied from cache
 
-				await callRPKGFunction(`-extract_locr_to_json_from "${path.join(config.runtimePath, localisationFileRPKG + ".rpkg")}" -filter "${locrHash}" -output_path temp`)
+				await callRPKGFunction(`-extract_locr_to_json_from "${path.join(config.runtimePath)}" -filter "${locrHash}" -output_path temp`)
 
 				fs.ensureDirSync(path.join(process.cwd(), "staging", "chunk0"))
 
