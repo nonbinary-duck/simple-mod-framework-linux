@@ -22,7 +22,7 @@ const gameHashes = {
 	// prettier-ignore
 	"fbc21d6cb9c46894f4c07e3ece8c6432": "epic",
 	"340abd7680e18943097a362bfcf16ea5": "epic", // with ansel unlock
-	"7ac366ddce7d7412acfeaf7539ceb3a8": "steam",
+	"81f5ec2450d4369583d28495445311f6": "steam",
 	"e7c9eedc5481372f75e85c880fc03173": "microsoft"
 	// Gamepass/store protects the EXE from reading so we can't hash it, instead we hash the game config
 } as {
@@ -71,11 +71,11 @@ if (fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))) 
 	}
 }
 
-// core.config.platform = fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))
-// 	? gameHashes[md5File.sync(path.join(core.config.retailPath, "..", "MicrosoftGame.Config"))]
-// 	: gameHashes[md5File.sync(path.join(core.config.runtimePath, "..", "Retail", "HITMAN3.exe"))] // Platform detection
+core.config.platform = fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))
+	? gameHashes[md5File.sync(path.join(core.config.retailPath, "..", "MicrosoftGame.Config"))]
+	: gameHashes[md5File.sync(path.join(core.config.runtimePath, "..", "Retail", "HITMAN3.exe"))] // Platform detection
 
-core.config.platform="steam";
+// core.config.platform="steam";
 
 if (typeof core.config.platform == "undefined") {
 	core.logger.error("Unknown platform/game version - update both the game and the framework and if that doesn't work, contact Atampy26 on Hitman Forum!")
