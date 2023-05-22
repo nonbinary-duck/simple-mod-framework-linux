@@ -71,9 +71,11 @@ if (fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))) 
 	}
 }
 
-core.config.platform = fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))
-	? gameHashes[md5File.sync(path.join(core.config.retailPath, "..", "MicrosoftGame.Config"))]
-	: gameHashes[md5File.sync(path.join(core.config.runtimePath, "..", "Retail", "HITMAN3.exe"))] // Platform detection
+// core.config.platform = fs.existsSync(path.join(core.config.retailPath, "Runtime", "chunk0.rpkg"))
+// 	? gameHashes[md5File.sync(path.join(core.config.retailPath, "..", "MicrosoftGame.Config"))]
+// 	: gameHashes[md5File.sync(path.join(core.config.runtimePath, "..", "Retail", "HITMAN3.exe"))] // Platform detection
+
+core.config.platform=Platform.steam;
 
 if (typeof core.config.platform == "undefined") {
 	core.logger.error("Unknown platform/game version - update both the game and the framework and if that doesn't work, contact Atampy26 on Hitman Forum!")
